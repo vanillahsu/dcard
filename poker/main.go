@@ -22,6 +22,11 @@ func (r Rank) Less(i, j int) bool {
 }
 
 func main() {
+	if len(os.Args) < 11 {
+		fmt.Printf("usage: %s AC 2C 3C 4C 5D 6D 7D 8D 9S TH\n", os.Args[0])
+		os.Exit(0)
+	}
+
 	ranks := map[string]int{
 		"2": 2,
 		"3": 3,
@@ -68,6 +73,9 @@ func score(ranks map[string]int, ss []string) string {
 		if val, ok := ranks[x[0]]; ok {
 			ranks_h = append(ranks_h, val)
 			ranks_l = append(ranks_l, val)
+		} else {
+			fmt.Printf("%s is wrong rank\n", x[0])
+			os.Exit(0)
 		}
 	}
 
